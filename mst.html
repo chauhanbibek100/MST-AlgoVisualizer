@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive Minimum Spanning Tree Visualizer — Build graphs and watch Kruskal's or Prim's algorithm step by step."
+    />
+    <title>MST Visualizer — AlgoViz</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>"
+    />
+  </head>
+  <body>
+    <div class="bg-animated"></div>
+
+    <div class="page-wrapper">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="container">
+          <a href="index.html" class="nav-brand">
+            <span class="logo-icon">⚡</span>
+            <span>AlgoViz</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li>
+              <a href="mst.html" class="active" id="nav-mst">MST Visualizer</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container viz-page">
+        <h1>Minimum Spanning Tree</h1>
+        <!-- <p class="subtitle">
+          Click the canvas to add nodes. Click two nodes to connect them. Then
+          run an algorithm to find the MST.
+        </p> -->
+
+        <!-- Controls -->
+        <div class="controls-panel" id="controls-panel">
+          <div class="control-group">
+            <label for="algo-select">Algorithm:</label>
+            <select id="algo-select">
+              <option value="kruskal">Kruskal's</option>
+              <option value="prim">Prim's</option>
+            </select>
+          </div>
+
+          <div class="control-divider"></div>
+
+          <div class="control-group">
+            <label for="speed-slider">Speed:</label>
+            <input type="range" id="speed-slider" min="1" max="10" value="5" />
+            <span
+              id="speed-value"
+              style="color: var(--text-secondary); font-size: 0.85rem"
+              >5x</span
+            >
+          </div>
+
+          <div class="control-divider"></div>
+
+          <div class="control-group">
+            <button class="btn btn-success" id="btn-run">▶ Run</button>
+            <button class="btn btn-secondary" id="btn-step">⏭ Step</button>
+            <button class="btn btn-secondary" id="btn-pause">⏸ Pause</button>
+          </div>
+
+          <div class="control-divider"></div>
+
+          <div class="control-group">
+            <label for="random-nodes">Nodes:</label>
+            <input
+              type="number"
+              id="random-nodes"
+              min="3"
+              max="20"
+              value="8"
+              style="width: 65px"
+            />
+            <button class="btn btn-secondary" id="btn-random">🎲 Random</button>
+          </div>
+
+          <div class="control-divider"></div>
+
+          <div class="control-group">
+            <button class="btn btn-danger" id="btn-clear">✕ Clear</button>
+          </div>
+        </div>
+
+        <!-- Canvas + Info Side-by-Side -->
+        <div class="canvas-info-row">
+          <div class="canvas-wrapper" id="canvas-wrapper">
+            <canvas id="mst-canvas" width="1200" height="560"></canvas>
+          </div>
+
+          <!-- Info Panel (right sidebar) -->
+          <div class="info-panel" id="info-panel">
+            <h3 class="info-panel-title">Stats</h3>
+            <div class="info-row">
+              <div class="info-item">
+                <span class="label">Status</span>
+                <span class="status-badge idle" id="status-badge">
+                  <span class="status-dot"></span>
+                  <span id="status-text">Idle</span>
+                </span>
+              </div>
+              <div class="info-item">
+                <span class="label">Nodes</span>
+                <span class="value purple" id="info-nodes">0</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Edges</span>
+                <span class="value" id="info-edges">0</span>
+              </div>
+              <div class="info-item">
+                <span class="label">MST Edges</span>
+                <span class="value green" id="info-mst-edges">0</span>
+              </div>
+              <div class="info-item">
+                <span class="label">MST Weight</span>
+                <span class="value green" id="info-mst-weight">0</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Current Step</span>
+                <span class="value orange" id="info-step">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructions toast -->
+        <div class="toast" id="toast">Click on the canvas to add a node</div>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <p>Built with ❤️ for algorithm enthusiasts &bull; AlgoViz © 2026</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/mst.js"></script>
+  </body>
+</html>
